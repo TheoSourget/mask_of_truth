@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Evaluate the risk of shortcut learning with medical images by masking out the clinically relevant part of the images">
+  <meta name="keywords" content="Shortcut, Mask, CNN, AI, medicalAI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mask of truth</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+  <link rel="shortcut icon" href="./static/images/favicon.png">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Mask of truth: model sensitivity to unexpected regions of medical images</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://tsourget.fr">Théo Sourget</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://linkedin.com/in/michelle-hestbek-moeller">Michelle Hestbek-Møller</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://ameliajimenez.github.io/">Amelia Jiménez-Sánchez</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://linkedin.com/in/jack-junchi-xu-106909104">Jack Junchi Xu</a><sup>2,3,4</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://veronikach.com/">Veronika Cheplygina</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>IT University of Copenhagen,</span>
+            <span class="author-block"><sup>2</sup>Copenhagen University Hospital, Herlev and Gentofte,</span>
+            <span class="author-block"><sup>3</sup>Radiological AI Testcenter,</span>
+            <span class="author-block"><sup>4</sup>Zealand University Hospital Department of Radiology</span>
+
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                In this work, we challenge the capacity of convolutional neural networks (CNN) 
+                to classify chest X-rays and eye fundus images while masking out clinically relevant parts of the image.
+              </p>
+              <p>
+                We show that all models trained on the PadChest dataset, irrespective of the masking strategy, 
+                are able to obtain an Area Under the Curve (AUC) above random. 
+                Moreover, the models trained on full images obtain good performance on images without the region of interest (ROI), 
+                even superior to the one obtained on images only containing the ROI.
+              </p>
+              <p>
+                We also reveal a possible spurious correlation in the Chákṣu dataset while the performances are more aligned with the expectation of an unbiased model.
+              </p>
+              <p>
+                We go beyond the performance analysis with the usage of the explainability method SHAP and the analysis of embeddings. 
+                We asked a radiology resident to interpret chest X-rays under different masking to complement our findings with clinical knowledge.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2412.04030"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2412.04030"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/TheoSourget/MMC_Masking"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+    </div>
+</section>
+
+
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered">
+            <div class="column is-full-width">
+              
+                <h2 class="title is-3">Masking out the ROI and evaluation</h2>
+                <!-- Chest X-rays. -->
+                <h3 class="title is-4">Chest X-rays</h3>
+                <h4 class="title is-5">Data</h4>
+
+                <p>
+                    We use the <a href="https://www.sciencedirect.com/science/article/pii/S1361841520301614">PadChest dataset</a>, a multi-class and multi-label dataset with more than 160,000 images containing annotations for
+                    174 labels. We train the model for five classes: cardiomegaly, pneumonia, atelectasis, pneumothorax and effusion. 
+                    We remove the lungs from the images using the mask provided by the <a href="https://www.nature.com/articles/s41597-024-03358-1">CheXmask dataset</a>.
+                </p>
+                <div class="is-3 has-text-centered">
+                    <img src="./static/images/data_masking_chest.png"
+                         alt="The different types of images depending on the masked area."/>
+                    <p>The five types of images for the PadChest dataset</p>
+                </div>
+              
+                <h4 class="title is-5">Good performances on all type of images</h4>
+                <p>
+                  For each type of masking we train a classifier and evaluate it on all the masking types. 
+                  For all classes, models are able to obtain good performances when trained and evaluated on the same type of images, even without the ROI.
+                </p>
+                  
+                     
+                <div class="container">
+                    <div id="results-carousel" class="carousel results-carousel">
+                      <div class="item item-steve">
+                        <img src="./static/images/test_mean_auc_atelectasis.png"
+                             alt="AUCs for the atelectasis class."/>
+                      </div>
+                      <div class="item item-chair-tp">
+                        <img src="./static/images/test_mean_auc_cardiomegaly.png"
+                             alt="AUCs for the cardiomegaly class"/>
+                      </div>
+                      <div class="item item-shiba">
+                        <img src="./static/images/test_mean_auc_effusion.png"
+                             alt="AUCs for the effusion class"/>
+                      </div>
+                      <div class="item item-fullbody">
+                        <img src="./static/images/test_mean_auc_pneumonia.png"
+                             alt="AUCs for the pneumonia class"/>
+                      </div>
+                      <div class="item item-blueshirt">
+                        <img src="./static/images/test_mean_auc_pneumothorax.png"
+                             alt="Interpolate start pneumothorax image."/>
+                      </div>
+                    </div>
+                </div>
+
+                <br/>
+                <h4 class="title is-5">Obivious and non-obvious shortcuts</h4>
+                <p>
+                    We apply SHAP to evaluate the element used by the model to make the classification. 
+                    We see the model focusing on visible shortcuts such as (e.g pacemaker) but also at the relevant part of the image (e.g the heart). 
+                    Without the ROI, the model is focusing on area at the border of the image that doesn't containt obvious shortcuts.
+                </p>
+                <div class="is-3 has-text-centered">
+                    <img src="./static/images/SHAP_chest.png"
+                         alt="SHAP values of different chest x-rays."
+                         width="500" height="300"/>
+                    <p>Example of SHAP values for different images</p>
+                </div>
+                <!--/ Chest X-rays. -->
+                
+                <br/>
+
+                <!-- Eye fundus -->
+                <h3 class="title is-4">Eye fundus</h3>
+                <h4 class="title is-5">Data</h4>
+
+                <p>
+                    We use the <a href="https://www.nature.com/articles/s41597-023-01943-4">Chákṣu dataset</a>, a dataset for the binary classification of glaucoma with 1345 images acquired with three different fundus cameras. 
+                    We remove the optic disc in the image using the mask provided with the Chákṣu dataset.
+                </p>
+                <div class="is-3 has-text-centered">
+                    <img src="./static/images/data_masking_eyefundus.png"
+                         alt="The different types of images depending on the masked area."/>
+                    <p>The five types of images for the Chákṣu dataset</p>
+                </div>
+                
+                <br/>
+                
+                <div class="columns is-centered">
+                    <!-- Visual Effects. -->
+                      <div class="column">
+                      <h2 class="title is-3">No signs of shortcut learning from the masking...</h2>
+                        <div class="content">
+                          <p>
+                            For this dataset, the low performances on images without the ROI 
+                            are more aligned with the expectation of models not impacted by shortcut learning.
+                          </p>
+                            <img src="./static/images/test_mean_auc_glaucoma.png"
+                                 alt="AUCs for the glaucoma class"/>
+                        </div>
+                      </div>
+                      <!--/ Visual Effects. -->
+    
+                      <!-- Matting. -->
+                      <div class="column">
+                        <h2 class="title is-3">...But a potential shortcut within the region of interest</h2>
+                        <div class="columns is-centered">
+                          <div class="column content">
+                            <p>
+                                Grounded in medical knowledge, we show that the size of the optic disc may be a shortcut as it is for real clinicians. 
+                                On model trained with only the optic disc, increasing the size of the mask for only one class (glaucoma in orange or healthy in blue) 
+                                to simulate larger optic disc reveals a potential shortcut within the ROI.
+                            </p>
+                            <img src="./static/images/mean_auc_dilation_onlydisc.png"
+                                 alt="Evolution of auc when increasing the mask size."/>
+                          </div>
+    
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- Eye fundus -->
+                    
+
+                <br/>
+                <h3 class="title is-4">See more in the paper</h3>
+                <p>
+                    Check-out the full paper for additional results on the application of the models on Out-Of-Distribution data, showing their poor generability.
+                    Furthermore, the study with a radiology resident reveals the difficulty of making a diagnosis only from the images, 
+                    confirming the need for additional information from other modalities (e.g radiology report).
+                    Finally, we also discuss the limitation of explainability methods and embeddings analysis.
+
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{sourget2024mask,
+        title={Mask of truth: model sensitivity to unexpected regions of medical images},
+        author={Sourget, Th{\'e}o and Hestbek-M{\o}ller, Michelle and Jim{\'e}nez-S{\'a}nchez, Amelia and Xu, Jack Junchi and Cheplygina, Veronika},
+        journal={arXiv preprint arXiv:2412.04030},
+        year={2024}
+      }
+      </code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://arxiv.org/pdf/2412.04030">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/TheoSourget" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+            <p>
+              This website is based on the
+                <a href="https://nerfies.github.io/">Nerfies
+                  website</a> and
+                <a href="https://github.com/nerfies/nerfies.github.io">source
+                  code</a>
+            </p>
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
